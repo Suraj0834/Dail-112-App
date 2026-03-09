@@ -1,12 +1,20 @@
 // =============================================================================
 // Dial-112 Emergency Response System - Android App Build Configuration
 // =============================================================================
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
 }
+
+val localProps = Properties().also { props ->
+    val f = rootProject.file("local.properties")
+    if (f.exists()) props.load(f.inputStream())
+}
+val mapsApiKey: String = localProps.getProperty("MAPSAPIKEY") ?: ""
 
 android {
     namespace = "com.dial112"
@@ -25,10 +33,10 @@ android {
         buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:5001/\"")
         buildConfigField("String", "AI_BASE_URL", "\"http://10.0.2.2:8000/\"")
         buildConfigField("String", "SOCKET_URL", "\"http://10.0.2.2:5001\"")
-        buildConfigField("String", "MAPS_API_KEY", "\"AIzaSyBweXhdwxPGjfLXOdQLpnglIskuSB3K9P0\"")
+        buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
 
         // Manifest placeholder for Maps API key
-        manifestPlaceholders["MAPS_API_KEY"] = "AIzaSyBweXhdwxPGjfLXOdQLpnglIskuSB3K9P0"
+        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
     }
 
     buildTypes {
