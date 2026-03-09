@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_chat_message.xml - Chat message item (user & bot variants)
+    Design: FrameLayout with two views, one for user (right-aligned) and one for bot (left-aligned)
+    Key elements: tvUserMessage with bg_chat_user, tvBotMessage with bg_chat_bot
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="4dp">
+
+    <!-- ============================================================
+         BOT MESSAGE - Left-aligned with bot background
+         ============================================================ -->
+    <TextView
+        android:id="@+id/tvBotMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@drawable/bg_chat_bot"
+        android:fontFamily="@font/poppins_regular"
+        android:maxWidth="280dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="Hello! I'm your AI assistant. How can I help you today?"
+        tools:visibility="visible" />
+
+    <!-- ============================================================
+         USER MESSAGE - Right-aligned with user background
+         ============================================================ -->
+    <TextView
+        android:id="@+id/tvUserMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@drawable/bg_chat_user"
+        android:fontFamily="@font/poppins_regular"
+        android:maxWidth="280dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="I need help filing a complaint"
+        tools:visibility="visible" />
+
+</FrameLayout>

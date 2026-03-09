@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    item_timeline.xml - Timeline entry item for case progress
+    Design: Vertical line with dot indicator, status/note/timestamp
+    Key elements: Vertical line, dot circle, status text, note, timestamp
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="4dp">
+
+    <!-- ============================================================
+         TIMELINE INDICATOR - Vertical line + dot
+         ============================================================ -->
+
+    <!-- Vertical line running full height -->
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:background="@color/accent_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Dot circle on the timeline -->
+    <View
+        android:id="@+id/view_dot"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_circle_accent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvStatus" />
+
+    <!-- ============================================================
+         TEXT CONTENT - Status, note, timestamp
+         ============================================================ -->
+
+    <!-- Status text (e.g., "FIR Filed", "Investigation Started") -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_dot"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Investigation Started" />
+
+    <!-- Note / description text -->
+    <TextView
+        android:id="@+id/tvNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_dot"
+        app:layout_constraintTop_toBottomOf="@id/tvStatus"
+        tools:text="Officer dispatched to the crime scene for evidence collection." />
+
+    <!-- Timestamp -->
+    <TextView
+        android:id="@+id/tvTimestamp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/text_hint"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_dot"
+        app:layout_constraintTop_toBottomOf="@id/tvNote"
+        tools:text="02 Mar 2026, 14:30" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

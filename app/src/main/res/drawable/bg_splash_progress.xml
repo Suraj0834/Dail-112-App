@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gradient progress bar drawable for splash screen indeterminate progress bar -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Track background -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="2dp" />
+            <solid android:color="#1A2979FF" />
+        </shape>
+    </item>
+
+    <!-- Secondary progress (buffer) -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="2dp" />
+                <gradient
+                    android:angle="0"
+                    android:startColor="#702979FF"
+                    android:endColor="#707C4DFF" />
+            </shape>
+        </clip>
+    </item>
+
+    <!-- Primary progress fill -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="2dp" />
+                <gradient
+                    android:angle="0"
+                    android:startColor="#2979FF"
+                    android:endColor="#7C4DFF" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

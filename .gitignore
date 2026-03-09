@@ -1,0 +1,32 @@
+# ── Android / Gradle ──────────────────────────────────────────────────────────
+*.iml
+.gradle/
+local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+app/build/
+*/build/
+
+# ── Keystore / Secrets (NEVER commit) ─────────────────────────────────────────
+*.jks
+*.keystore
+*.p12
+
+# ── Other services (have their own repos) ─────────────────────────────────────
+backend/
+ai_service/
+web_portal/
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Dial-112 Emergency Response System - Android Manifest
+    Declares all permissions, services, receivers, and activities
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- =====================================================================
+         PERMISSIONS
+         ===================================================================== -->
+
+    <!-- Location Permissions (for SOS and crime hotspot map) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Camera Permission (for face recognition, weapon detection, ANPR) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Phone Permission (to call 112) -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- Internet & Network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Foreground Service (for emergency SOS background tracking) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <!-- Notification -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Storage for image upload -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Power button detection -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Hardware features -->
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="true" />
+
+    <application
+        android:name=".Dial112Application"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Dial112"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <!-- ======================================================
+             MAIN ACTIVITY (Entry Point)
+             ====================================================== -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ======================================================
+             SOS FOREGROUND SERVICE (Emergency Background Tracking)
+             ====================================================== -->
+        <service
+            android:name=".utils.services.SosEmergencyService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- ======================================================
+             OFFICER DUTY SERVICE (Live Location - 1 second)
+             ====================================================== -->
+        <service
+            android:name=".utils.services.OfficerDutyService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- ======================================================
+             BOOT RECEIVER (Power button detection on rebo)
+             ====================================================== -->
+        <receiver
+            android:name=".utils.receivers.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ======================================================
+             POWER BUTTON RECEIVER
+             ====================================================== -->
+        <receiver
+            android:name=".utils.receivers.PowerButtonReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

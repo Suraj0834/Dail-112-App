@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Radial glow effect behind the splash screen logo -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="50%"
+        android:startColor="#3A2979FF"
+        android:centerColor="#152979FF"
+        android:endColor="#002979FF" />
+</shape>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_sos.xml - Active SOS Screen
+    Design: Dark centered layout with Lottie loading animation, status, officer card
+    Key elements: Lottie animation, SOS active text, status, officer info, cancel button
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+
+    <!-- ============================================================
+         LOTTIE LOADING ANIMATION
+         ============================================================ -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieLoading"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/anim_loading" />
+
+    <!-- ============================================================
+         SOS STATUS TEXT
+         ============================================================ -->
+
+    <!-- "SOS ACTIVE" headline -->
+    <TextView
+        android:id="@+id/tvSosActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="0.15"
+        android:text="SOS ACTIVE"
+        android:textColor="@color/sos_red"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lottieLoading" />
+
+    <!-- Status description -->
+    <TextView
+        android:id="@+id/tvSosStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:text="Your location is being shared with nearby officers"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSosActive" />
+
+    <!-- ============================================================
+         OFFICER INFO CARD - Shown when officer is dispatched
+         ============================================================ -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardOfficer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="32dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/background_card"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/accent_blue"
+        app:strokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSosStatus"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Officer dispatched label -->
+            <TextView
+                android:id="@+id/tvOfficerLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Officer Dispatched"
+                android:textColor="@color/accent_blue"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Officer avatar -->
+            <ImageView
+                android:id="@+id/ivOfficerAvatar"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_circle_accent"
+                android:contentDescription="Officer photo"
+                android:padding="10dp"
+                android:src="@drawable/ic_person_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvOfficerLabel"
+                app:tint="@color/white" />
+
+            <!-- Officer Name -->
+            <TextView
+                android:id="@+id/tvOfficerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivOfficerAvatar"
+                app:layout_constraintTop_toTopOf="@id/ivOfficerAvatar"
+                tools:text="SI Rajesh Kumar" />
+
+            <!-- Officer Distance -->
+            <TextView
+                android:id="@+id/tvOfficerDistance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/accent_green"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivOfficerAvatar"
+                app:layout_constraintTop_toBottomOf="@id/tvOfficerName"
+                tools:text="2.3 km away • ETA 5 min" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ============================================================
+         CANCEL SOS BUTTON
+         ============================================================ -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelSos"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Cancel SOS"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/primary_red"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

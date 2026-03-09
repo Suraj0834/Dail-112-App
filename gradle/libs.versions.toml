@@ -1,0 +1,181 @@
+# =============================================================================
+# Dial-112 Emergency Response System - Dependency Version Catalog
+# =============================================================================
+
+[versions]
+# Android
+agp = "8.5.2"
+kotlin = "1.9.22"
+coreKtx = "1.12.0"
+appcompat = "1.6.1"
+material = "1.11.0"
+activityKtx = "1.8.2"
+fragmentKtx = "1.6.2"
+constraintlayout = "2.1.4"
+
+# Lifecycle & Architecture
+lifecycle = "2.7.0"
+navigation = "2.7.6"
+
+# Hilt
+hilt = "2.50"
+
+# Networking
+retrofit = "2.9.0"
+okhttp = "4.12.0"
+
+# Database
+room = "2.6.1"
+
+# Coroutines
+coroutines = "1.7.3"
+
+# Google Services
+googleMaps = "18.2.0"
+googleLocation = "21.1.0"
+mapsUtils = "3.4.0"
+
+# CameraX
+camerax = "1.3.1"
+
+# Socket.IO
+socketio = "2.1.0"
+
+# Image Loading
+glide = "4.16.0"
+
+# UI
+lottie = "6.3.0"
+blurview = "2.0.3"
+
+# Storage
+datastore = "1.0.0"
+
+# SwipeRefreshLayout
+swiperefreshlayout = "1.1.0"
+
+# WorkManager
+workmanager = "2.9.0"
+
+# Testing
+junit = "4.13.2"
+junitAndroid = "1.1.5"
+espresso = "3.5.1"
+
+# Kapt
+kapt = "1.9.22"
+navigationFragmentKtx = "2.9.7"
+navigationUiKtx = "2.9.7"
+
+[libraries]
+# -------------------------------------------------------------------------
+# Core Android
+# -------------------------------------------------------------------------
+androidx-core-ktx         = { group = "androidx.core",       name = "core-ktx",            version.ref = "coreKtx" }
+androidx-appcompat        = { group = "androidx.appcompat",  name = "appcompat",            version.ref = "appcompat" }
+material                  = { group = "com.google.android.material", name = "material",    version.ref = "material" }
+androidx-activity-ktx     = { group = "androidx.activity",  name = "activity-ktx",         version.ref = "activityKtx" }
+androidx-fragment-ktx     = { group = "androidx.fragment",  name = "fragment-ktx",         version.ref = "fragmentKtx" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+# -------------------------------------------------------------------------
+# Lifecycle
+# -------------------------------------------------------------------------
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-ktx  = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx",  version.ref = "lifecycle" }
+androidx-lifecycle-runtime-ktx   = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx",   version.ref = "lifecycle" }
+
+# -------------------------------------------------------------------------
+# Navigation
+# -------------------------------------------------------------------------
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui-ktx       = { group = "androidx.navigation", name = "navigation-ui-ktx",       version.ref = "navigation" }
+
+# -------------------------------------------------------------------------
+# Hilt DI
+# -------------------------------------------------------------------------
+hilt-android  = { group = "com.google.dagger", name = "hilt-android",           version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler",  version.ref = "hilt" }
+
+# -------------------------------------------------------------------------
+# Networking
+# -------------------------------------------------------------------------
+retrofit         = { group = "com.squareup.retrofit2", name = "retrofit",             version.ref = "retrofit" }
+retrofit-gson    = { group = "com.squareup.retrofit2", name = "converter-gson",       version.ref = "retrofit" }
+okhttp           = { group = "com.squareup.okhttp3",   name = "okhttp",               version.ref = "okhttp" }
+okhttp-logging   = { group = "com.squareup.okhttp3",   name = "logging-interceptor",  version.ref = "okhttp" }
+
+# -------------------------------------------------------------------------
+# Room
+# -------------------------------------------------------------------------
+room-runtime  = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx      = { group = "androidx.room", name = "room-ktx",     version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# -------------------------------------------------------------------------
+# Coroutines
+# -------------------------------------------------------------------------
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-coroutines-core    = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core",    version.ref = "coroutines" }
+
+# -------------------------------------------------------------------------
+# Google Maps & Location
+# -------------------------------------------------------------------------
+play-services-maps     = { group = "com.google.android.gms", name = "play-services-maps",     version.ref = "googleMaps" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "googleLocation" }
+maps-utils             = { group = "com.google.maps.android", name = "android-maps-utils",    version.ref = "mapsUtils" }
+
+# -------------------------------------------------------------------------
+# CameraX
+# -------------------------------------------------------------------------
+camerax-core      = { group = "androidx.camera", name = "camera-core",     version.ref = "camerax" }
+camerax-camera2   = { group = "androidx.camera", name = "camera-camera2",  version.ref = "camerax" }
+camerax-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+camerax-view      = { group = "androidx.camera", name = "camera-view",     version.ref = "camerax" }
+
+# -------------------------------------------------------------------------
+# Socket.IO
+# -------------------------------------------------------------------------
+socket-io = { group = "io.socket", name = "socket.io-client", version.ref = "socketio" }
+
+# -------------------------------------------------------------------------
+# Image Loading
+# -------------------------------------------------------------------------
+glide          = { group = "com.github.bumptech.glide", name = "glide",             version.ref = "glide" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler",          version.ref = "glide" }
+
+# -------------------------------------------------------------------------
+# Animations
+# -------------------------------------------------------------------------
+lottie   = { group = "com.airbnb.android",   name = "lottie",   version.ref = "lottie" }
+blurview = { group = "com.github.Dimezis",      name = "BlurView", version.ref = "blurview" }
+
+# -------------------------------------------------------------------------
+# SwipeRefreshLayout
+# -------------------------------------------------------------------------
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+
+# -------------------------------------------------------------------------
+# Storage
+# -------------------------------------------------------------------------
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+# -------------------------------------------------------------------------
+# WorkManager
+# -------------------------------------------------------------------------
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
+
+# -------------------------------------------------------------------------
+# Testing
+# -------------------------------------------------------------------------
+junit              = { group = "junit",           name = "junit",            version.ref = "junit" }
+androidx-junit     = { group = "androidx.test.ext", name = "junit",          version.ref = "junitAndroid" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
+[plugins]
+android-application = { id = "com.android.application",     version.ref = "agp" }
+kotlin-android      = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt         = { id = "org.jetbrains.kotlin.kapt",    version.ref = "kapt" }
+hilt                = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

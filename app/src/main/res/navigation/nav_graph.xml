@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- ==================== AUTH ==================== -->
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.dial112.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_policeHomeFragment"
+            app:destination="@id/policeHomeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.dial112.ui.auth.ForgotPasswordFragment"
+        android:label="Forgot Password"
+        tools:layout="@layout/fragment_forgot_password">
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.dial112.ui.auth.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ==================== CITIZEN HOME ==================== -->
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.dial112.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_sosFragment"
+            app:destination="@id/sosFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fileFirFragment"
+            app:destination="@id/fileFirFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_casesFragment"
+            app:destination="@id/casesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_crimeMapFragment"
+            app:destination="@id/crimeMapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_vehicleFragment"
+            app:destination="@id/vehicleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sosHistoryFragment"
+            app:destination="@id/sosHistoryFragment" />
+    </fragment>
+
+    <!-- ==================== SOS ==================== -->
+
+    <fragment
+        android:id="@+id/sosFragment"
+        android:name="com.dial112.ui.sos.SosFragment"
+        android:label="SOS Active"
+        tools:layout="@layout/fragment_sos" />
+
+    <!-- ==================== FIR / CASES ==================== -->
+
+    <fragment
+        android:id="@+id/fileFirFragment"
+        android:name="com.dial112.ui.fir.FileFirFragment"
+        android:label="File FIR"
+        tools:layout="@layout/fragment_file_fir" />
+
+    <fragment
+        android:id="@+id/casesFragment"
+        android:name="com.dial112.ui.cases.CasesFragment"
+        android:label="My Cases"
+        tools:layout="@layout/fragment_cases">
+        <action
+            android:id="@+id/action_casesFragment_to_caseDetailFragment"
+            app:destination="@id/caseDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/caseDetailFragment"
+        android:name="com.dial112.ui.cases.CaseDetailFragment"
+        android:label="Case Detail"
+        tools:layout="@layout/fragment_case_detail">
+        <argument
+            android:name="caseId"
+            app:argType="string" />
+    </fragment>
+
+    <!-- ==================== CRIME MAP ==================== -->
+
+    <fragment
+        android:id="@+id/crimeMapFragment"
+        android:name="com.dial112.ui.map.CrimeMapFragment"
+        android:label="Crime Map"
+        tools:layout="@layout/fragment_crime_map" />
+
+    <!-- ==================== VEHICLE LOOKUP ==================== -->
+
+    <fragment
+        android:id="@+id/vehicleFragment"
+        android:name="com.dial112.ui.vehicle.VehicleFragment"
+        android:label="Vehicle Lookup"
+        tools:layout="@layout/fragment_vehicle" />
+
+    <!-- ==================== AI CHAT ==================== -->
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.dial112.ui.chat.ChatFragment"
+        android:label="AI Chat"
+        tools:layout="@layout/fragment_chat" />
+
+    <!-- ==================== POLICE HOME ==================== -->
+
+    <fragment
+        android:id="@+id/policeHomeFragment"
+        android:name="com.dial112.ui.police.PoliceHomeFragment"
+        android:label="Police Dashboard"
+        tools:layout="@layout/fragment_police_home">
+        <action
+            android:id="@+id/action_policeHomeFragment_to_caseDetailFragment"
+            app:destination="@id/caseDetailFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_vehicleFragment"
+            app:destination="@id/vehicleFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_casesFragment"
+            app:destination="@id/casesFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_crimeMapFragment"
+            app:destination="@id/crimeMapFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_pcrVanFragment"
+            app:destination="@id/pcrVanFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/policeHomeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_criminalSearchFragment"
+            app:destination="@id/criminalSearchFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_sosHistoryFragment"
+            app:destination="@id/sosHistoryFragment" />
+        <action
+            android:id="@+id/action_policeHomeFragment_to_activeSosDetailFragment"
+            app:destination="@id/activeSosDetailFragment" />
+    </fragment>
+
+    <!-- ==================== PCR VAN ==================== -->
+
+    <fragment
+        android:id="@+id/pcrVanFragment"
+        android:name="com.dial112.ui.police.PcrVanFragment"
+        android:label="PCR Van Fleet"
+        tools:layout="@layout/fragment_pcr_van" />
+
+    <!-- ==================== CAMERA (AI) ==================== -->
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.dial112.ui.camera.CameraFragment"
+        android:label="AI Camera"
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_cameraFragment_to_criminalDetailFragment"
+            app:destination="@id/criminalDetailFragment" />
+    </fragment>
+
+    <!-- ==================== PROFILE ==================== -->
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.dial112.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_sosHistoryFragment"
+            app:destination="@id/sosHistoryFragment" />
+    </fragment>
+
+    <!-- ==================== SETTINGS ==================== -->
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.dial112.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.dial112.ui.settings.ChangePasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_change_password" />
+
+    <!-- ==================== CRIMINAL DATABASE ==================== -->
+
+    <fragment
+        android:id="@+id/criminalSearchFragment"
+        android:name="com.dial112.ui.police.CriminalSearchFragment"
+        android:label="Criminal Search"
+        tools:layout="@layout/fragment_criminal_search">
+        <action
+            android:id="@+id/action_criminalSearchFragment_to_criminalDetailFragment"
+            app:destination="@id/criminalDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/criminalDetailFragment"
+        android:name="com.dial112.ui.police.CriminalDetailFragment"
+        android:label="Criminal Profile"
+        tools:layout="@layout/fragment_criminal_detail">
+        <argument
+            android:name="criminalId"
+            app:argType="string" />
+    </fragment>
+
+    <!-- ==================== SOS HISTORY ==================== -->
+
+    <fragment
+        android:id="@+id/sosHistoryFragment"
+        android:name="com.dial112.ui.sos.SosHistoryFragment"
+        android:label="SOS History"
+        tools:layout="@layout/fragment_sos_history">
+        <action
+            android:id="@+id/action_sosHistoryFragment_to_activeSosDetailFragment"
+            app:destination="@id/activeSosDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/activeSosDetailFragment"
+        android:name="com.dial112.ui.sos.ActiveSosDetailFragment"
+        android:label="SOS Detail"
+        tools:layout="@layout/fragment_active_sos_detail">
+        <argument
+            android:name="sosId"
+            app:argType="string" />
+    </fragment>
+
+    <!-- ==================== GLOBAL ACTIONS ==================== -->
+
+    <action
+        android:id="@+id/action_global_to_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
+</navigation>

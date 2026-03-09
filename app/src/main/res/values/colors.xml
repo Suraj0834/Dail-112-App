@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    colors.xml - Dial-112 Design System Colors
+    Dark mode first, with Material 3 color tokens
+-->
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary_red">#E53935</color>          <!-- Main red for police/emergency -->
+    <color name="primary_red_dark">#B71C1C</color>
+    <color name="primary_red_light">#EF5350</color>
+
+    <!-- SOS Button -->
+    <color name="sos_red">#FF1744</color>              <!-- Vibrant SOS red -->
+    <color name="sos_pulse">#33FF1744</color>          <!-- Semi-transparent for pulse ring -->
+
+    <!-- Accent Colors -->
+    <color name="accent_blue">#2979FF</color>          <!-- Primary action blue -->
+    <color name="accent_blue_light">#448AFF</color>
+    <color name="accent_green">#00E676</color>         <!-- Success / safe green -->
+    <color name="accent_orange">#FF6D00</color>        <!-- Warning orange -->
+    <color name="accent_purple">#7C4DFF</color>        <!-- AI / special features -->
+    <color name="accent_teal">#00BCD4</color>          <!-- Vehicle lookup teal -->
+
+    <!-- Background Colors (Dark Theme) -->
+    <color name="background_dark">#0A0E1A</color>      <!-- Deep dark background -->
+    <color name="background_card">#121829</color>      <!-- Card background -->
+    <color name="background_surface">#1A2035</color>   <!-- Surface / elevated -->
+    <color name="blur_overlay">#40FFFFFF</color>       <!-- BlurView overlay -->
+
+    <!-- Quick Action Card Backgrounds -->
+    <color name="card_bg_blue">#1A2979FF</color>
+    <color name="card_bg_green">#1A00C853</color>
+    <color name="card_bg_orange">#1AFF6D00</color>
+    <color name="card_bg_purple">#1A7C4DFF</color>
+    <color name="card_bg_teal">#1A00BCD4</color>
+    <color name="card_bg_red">#1AE53935</color>
+
+    <!-- Text Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0FFFFFF</color>
+    <color name="text_hint">#60FFFFFF</color>
+    <color name="text_disabled">#40FFFFFF</color>
+
+    <!-- UI State Colors -->
+    <color name="error_red">#CF6679</color>
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_yellow">#FFB300</color>
+    <color name="info_blue">#2196F3</color>
+
+    <!-- Input Fields -->
+    <color name="input_stroke_color">#40FFFFFF</color>
+    <color name="hint_color">#70FFFFFF</color>
+
+    <!-- Status Chip Colors -->
+    <color name="status_pending">#FF6D00</color>
+    <color name="status_investigating">#2979FF</color>
+    <color name="status_resolved">#00E676</color>
+    <color name="status_closed">#9E9E9E</color>
+
+    <!-- Risk Colors for Hotspot Map -->
+    <color name="risk_low">#4CAF50</color>
+    <color name="risk_medium">#FF9800</color>
+    <color name="risk_high">#F44336</color>
+    <color name="risk_critical">#B71C1C</color>
+
+    <!-- Divider -->
+    <color name="divider">#20FFFFFF</color>
+
+    <!-- Accent Red (alias) -->
+    <color name="accent_red">#FF1744</color>
+
+    <!-- Material 3 Seeds (for dynamic theming) -->
+    <color name="md_theme_light_primary">#B0001B</color>
+    <color name="md_theme_dark_primary">#FFB3B3</color>
+</resources>

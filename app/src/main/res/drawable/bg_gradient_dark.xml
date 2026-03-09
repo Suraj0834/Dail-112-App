@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bg_gradient_dark.xml - Main app background gradient -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#0A0E1A"
+        android:endColor="#141B2E"
+        android:angle="135"
+        android:type="linear" />
+</shape>

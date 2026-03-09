@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_splash.xml  |  Dial-112 Splash Screen
+    ─────────────────────────────────────────────────
+    Design  : Full-screen dark gradient with animated police shield logo,
+              pulsing SOS ring, app name, tagline, and a thin progress bar
+              sweeping across the bottom.
+    Requires: Lottie (anim_shield_pulse in res/raw/)
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash">
+
+    <!-- ── Radial glow behind logo ──────────────────────────────────────── -->
+    <View
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/bg_splash_glow" />
+
+    <!-- ── Main vertical stack ───────────────────────────────────────────── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingBottom="80dp">
+
+        <!-- Lottie animated shield -->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieSplash"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            app:lottie_rawRes="@raw/anim_shield"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+        <!-- App name -->
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="DIAL 112"
+            android:textColor="@color/white"
+            android:textSize="42sp"
+            android:letterSpacing="0.18"
+            android:alpha="0" />
+
+        <!-- Tagline -->
+        <TextView
+            android:id="@+id/tvTagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Emergency Response · AI Powered"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:letterSpacing="0.12"
+            android:alpha="0" />
+
+        <!-- Divider line -->
+        <View
+            android:id="@+id/dividerSplash"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_splash_line"
+            android:alpha="0" />
+
+        <!-- Sub-label -->
+        <TextView
+            android:id="@+id/tvDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Ministry of Home Affairs"
+            android:textColor="@color/text_hint"
+            android:textSize="11sp"
+            android:letterSpacing="0.15"
+            android:alpha="0" />
+
+    </LinearLayout>
+
+    <!-- ── Sweep progress bar at very bottom ─────────────────────────────── -->
+    <ProgressBar
+        android:id="@+id/splashProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="bottom"
+        android:progressDrawable="@drawable/bg_splash_progress"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/bg_splash_progress" />
+
+    <!-- ── Version label ─────────────────────────────────────────────────── -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="v2.0.0"
+        android:textColor="@color/text_hint"
+        android:textSize="11sp" />
+
+</FrameLayout>

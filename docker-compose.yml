@@ -1,0 +1,177 @@
+# =============================================================================
+# docker-compose.yml - Dial-112 Complete System Orchestration
+# Brings up: MongoDB + Node.js Backend + FastAPI AI Service
+# =============================================================================
+
+version: '3.9'
+
+networks:
+  dial112_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  mongodb_data:
+    driver: local
+  uploads_data:
+    driver: local
+  logs_data:
+    driver: local
+  ai_models:
+    driver: local
+
+services:
+
+  # ===========================================================================
+  # MONGODB - Primary Database
+  # ===========================================================================
+  mongodb:
+    image: mongo:7.0
+    container_name: dial112_mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-dial112secure}
+      MONGO_INITDB_DATABASE: dial112
+    volumes:
+      - mongodb_data:/data/db
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+    networks:
+      dial112_network:
+        ipv4_address: 172.20.0.10
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ===========================================================================
+  # NODE.JS BACKEND - Express API + Socket.IO
+  # ===========================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    container_name: dial112_backend
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      MONGODB_URI: mongodb://${MONGO_ROOT_USER:-admin}:${MONGO_ROOT_PASSWORD:-dial112secure}@mongodb:27017/dial112?authSource=admin
+      JWT_SECRET: ${JWT_SECRET:-dial112-jwt-secret-change-in-production}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      AI_SERVICE_URL: http://ai-service:8000
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-dial112-ai-secret}
+      BASE_URL: ${BASE_URL:-http://localhost:5000}
+      ALLOWED_ORIGIN: ${ALLOWED_ORIGIN:-*}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      BCRYPT_SALT_ROUNDS: 12
+    volumes:
+      - uploads_data:/app/uploads
+      - logs_data:/app/logs
+    ports:
+      - "5000:5000"
+    networks:
+      dial112_network:
+        ipv4_address: 172.20.0.20
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ===========================================================================
+  # WEB PORTAL - React Frontend + NGINX
+  # ===========================================================================
+  web-portal:
+    build:
+      context: ./web_portal/frontend
+      dockerfile: Dockerfile
+    container_name: dial112_frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    networks:
+      dial112_network:
+        ipv4_address: 172.20.0.40
+    healthcheck:
+      test: [ "CMD", "wget", "-qO-", "http://localhost" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # ===========================================================================
+  # PYTHON AI SERVICE - FastAPI + AI Models
+  # ===========================================================================
+  ai-service:
+    build:
+      context: ./ai_service
+      dockerfile: Dockerfile
+    container_name: dial112_ai
+    restart: unless-stopped
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      ENV: production
+      PORT: 8000
+      WORKERS: 1
+      MONGODB_URI: mongodb://${MONGO_ROOT_USER:-admin}:${MONGO_ROOT_PASSWORD:-dial112secure}@mongodb:27017/dial112?authSource=admin
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY:-dial112-ai-secret}
+      BACKEND_URL: http://backend:5000
+      REQUIRE_API_KEY: "false"
+    volumes:
+      - ai_models:/app/models # Cache downloaded AI models
+    ports:
+      - "8000:8000"
+    networks:
+      dial112_network:
+        ipv4_address: 172.20.0.30
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 60s
+      timeout: 30s # AI startup takes longer
+      retries: 3
+      start_period: 120s # Models take time to download/load
+    deploy:
+      resources:
+        limits:
+          memory: 4G # AI models need significant RAM
+        reservations:
+          memory: 2G
+
+  # ===========================================================================
+  # MONGO EXPRESS - Database admin UI (development only)
+  # ===========================================================================
+  mongo-express:
+    image: mongo-express:1.0.2
+    container_name: dial112_mongo_ui
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER:-admin}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD:-dial112secure}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USER:-admin}:${MONGO_ROOT_PASSWORD:-dial112secure}@mongodb:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD:-admin123}
+    ports:
+      - "8081:8081"
+    networks:
+      - dial112_network
+    profiles:
+      - dev # Only starts with: docker-compose --profile dev up
