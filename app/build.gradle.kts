@@ -30,9 +30,9 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // API base URL from build config
-        buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:5001/\"")
-        buildConfigField("String", "AI_BASE_URL", "\"http://10.0.2.2:8000/\"")
-        buildConfigField("String", "SOCKET_URL", "\"http://10.0.2.2:5001\"")
+        buildConfigField("String", "BASE_URL", "\"https://dail-112-be.onrender.com/\"")
+        buildConfigField("String", "AI_BASE_URL", "\"https://suraj0834-dial-112-ai.hf.space/\"")
+        buildConfigField("String", "SOCKET_URL", "\"https://dail-112-be.onrender.com\"")
         buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
 
         // Manifest placeholder for Maps API key
@@ -42,7 +42,7 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
-            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:5001/\"")
+            buildConfigField("String", "BASE_URL", "\"https://dail-112-be.onrender.com/\"")
         }
         release {
             isMinifyEnabled = true
@@ -51,7 +51,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://api.dial112.gov.in/\"")
+            buildConfigField("String", "BASE_URL", "\"https://dail-112-be.onrender.com/\"")
         }
     }
 
